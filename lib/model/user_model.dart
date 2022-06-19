@@ -2,11 +2,15 @@ class UserModel {
   String name;
   String phoneNumber;
   String? imageUrl;
+  String email;
+  // String id;
 
   UserModel({
     required this.imageUrl,
     required this.name,
     required this.phoneNumber,
+    required this.email,
+    // required this.id,
   });
 
   factory UserModel.fromJson(dynamic json) {
@@ -14,6 +18,8 @@ class UserModel {
       imageUrl: json['imageUrl'],
       name: json['name'],
       phoneNumber: json['phoneNumber'],
+      email: json['email'],
+      // id: json['id'],
     );
   }
 
@@ -22,6 +28,8 @@ class UserModel {
       'imageUrl': imageUrl,
       'name': name,
       'phoneNumber': phoneNumber,
+      'email': email,
+      // 'id': id,
     };
   }
 }

@@ -33,6 +33,19 @@ class _ServersDetailPageState extends State<ServersDetailPage> {
   final TextEditingController _ownerController = TextEditingController();
 
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  // final TextEditingController _requestController = TextEditingController();
+  // final TextEditingController _requestUploadController =
+  //     TextEditingController();
+  // final TextEditingController _requestDownloadController =
+  //     TextEditingController();
+  // final TextEditingController _responseUploadController =
+  //     TextEditingController();
+  // final TextEditingController _responseDownloadController =
+  //     TextEditingController();
+  // final TextEditingController _responseController = TextEditingController();
+  // final TextEditingController _unresponse = TextEditingController();
+  // final TextEditingController _requestInfoController = TextEditingController();
   late ServerDetailBloc _bloc;
 
   late ServerModel _serverModel;
@@ -43,6 +56,20 @@ class _ServersDetailPageState extends State<ServersDetailPage> {
     _descriptionController.text = widget.server.description ?? '';
     _ownerController.text = widget.server.owner.name;
     _phoneController.text = widget.server.owner.phoneNumber;
+    _emailController.text = widget.server.owner.email;
+    // _requestController.text = widget.server.requestNumber.toString();
+    // _requestDownloadController.text = widget.server.requestDownload.toString();
+    // _requestUploadController.text = widget.server.requestUpload.toString();
+    // _responseController.text = widget.server.responseTime.toString();
+    // _responseDownloadController.text =
+    //     widget.server.responseDownloadTime.toString();
+    // _responseUploadController.text =
+    //     widget.server.responseUploadTime.toString();
+    // _unresponse.text = widget.server.unresponse.toString();
+
+    // _requestInfoController.text =
+    //     'This server have received ${widget.server.requestNumber + widget.server.unresponse} requests. Of these, there are ${widget.server.unresponse} requests that are not answered and ${widget.server.requestNumber} requests that have responses with a response time of ${widget.server.responseTime}ms. There are a total of ${widget.server.requestUpload} upload requests with ${widget.server.responseUploadTime}ms response time and ${widget.server.requestDownload} download requests with ${widget.server.responseDownloadTime}ms response time.';
+
     _bloc = ServerDetailBloc(
       ServerDetailState(
         listLocation: const [],
@@ -198,12 +225,51 @@ class _ServersDetailPageState extends State<ServersDetailPage> {
                                 controller: _descriptionController,
                                 label: 'Description',
                                 maxLines: 3,
+                                readOnly: true,
                               ),
                             ],
                           ),
                         ),
                         const SizedBox(height: 40),
-                        LineChartSample2(),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                blurRadius: 7,
+                                offset: const Offset(3, 5),
+                              ),
+                            ],
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(12),
+                            ),
+                          ),
+                          padding: const EdgeInsets.all(24),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Text(
+                                'SERVER REQUEST INFO',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(height: 24),
+                              Text(
+                                'This server have received ${widget.server.requestNumber + widget.server.unresponse} requests. Of these, there are ${widget.server.unresponse} requests that are not answered and ${widget.server.requestNumber} requests that have responses with a response time of ${widget.server.responseTime}ms. There are a total of ${widget.server.requestUpload} upload requests with ${widget.server.responseUploadTime}ms response time and ${widget.server.requestDownload} download requests with ${widget.server.responseDownloadTime}ms response time.',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -245,6 +311,12 @@ class _ServersDetailPageState extends State<ServersDetailPage> {
                               width: 150,
                             ),
                           ),
+                        ),
+                        const SizedBox(height: 24),
+                        TextFieldWidget(
+                          controller: _emailController,
+                          label: 'Email',
+                          readOnly: true,
                         ),
                         const SizedBox(height: 24),
                         TextFieldWidget(

@@ -154,19 +154,19 @@ class ServerItemWidget extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black,
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           const SizedBox(width: 12),
-                          Expanded(
-                            child: Text(
-                              server.location ?? '',
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey,
-                              ),
-                              textAlign: TextAlign.right,
+                          Text(
+                            server.location ?? '',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey,
                             ),
+                            textAlign: TextAlign.right,
                           )
                         ],
                       ),
