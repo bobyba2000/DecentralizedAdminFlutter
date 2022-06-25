@@ -23,18 +23,22 @@ class ServerListBloc extends Cubit<ServerListState> {
   ServerListBloc() : super(const ServerListState());
 
   Future<void> loadAllServer() async {
-    DataSnapshot response =
-        await FirebaseDatabase.instance.ref('servers').get();
-    List<ServerModel> listItem =
-        response.children.map((e) => ServerModel.fromJson(e.value)).toList();
-    List<DatabaseReference> listRef =
-        response.children.map((e) => e.ref).toList();
+    try {
+      DataSnapshot response =
+          await FirebaseDatabase.instance.ref('servers').get();
+      List<ServerModel> listItem =
+          response.children.map((e) => ServerModel.fromJson(e.value)).toList();
+      List<DatabaseReference> listRef =
+          response.children.map((e) => e.ref).toList();
 
-    emit(ServerListState(
-      listServer: listItem,
-      listReference: listRef,
-      textSearch: state.textSearch,
-    ));
+      emit(ServerListState(
+        listServer: listItem,
+        listReference: listRef,
+        textSearch: state.textSearch,
+      ));
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<List<ServerModel>> loadListFile(int pageIndex, int pageSize) async {

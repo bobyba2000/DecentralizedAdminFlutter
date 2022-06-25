@@ -200,6 +200,7 @@ class _ServersDetailPageState extends State<ServersDetailPage> {
                                         'Inactive',
                                       ],
                                       initialValue: widget.server.status,
+                                      readOnly: true,
                                       onSelect: (value) {
                                         _serverModel.status =
                                             value ?? 'Inactive';

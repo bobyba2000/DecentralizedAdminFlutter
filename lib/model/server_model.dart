@@ -1,18 +1,19 @@
 import 'package:admin/model/user_model.dart';
 
 class ServerModel {
+  static const oo = 100000;
   final String url;
   final UserModel owner;
   String? description;
   String status;
   String? location;
-  String ownerId;
   int requestNumber;
   int requestDownload;
   int requestUpload;
   double responseTime;
   double responseDownloadTime;
   double responseUploadTime;
+  int row;
   int unresponse;
 
   ServerModel({
@@ -21,7 +22,6 @@ class ServerModel {
     required this.owner,
     this.location,
     required this.status,
-    required this.ownerId,
     required this.requestDownload,
     required this.requestNumber,
     required this.requestUpload,
@@ -29,6 +29,7 @@ class ServerModel {
     required this.responseTime,
     required this.responseUploadTime,
     required this.unresponse,
+    required this.row,
   });
 
   factory ServerModel.fromJson(dynamic json) {
@@ -38,7 +39,6 @@ class ServerModel {
       description: json['description'],
       location: json['location'],
       owner: UserModel.fromJson(json['owner']),
-      ownerId: json['ownerId'],
       requestDownload: int.tryParse(json['requestDownload'].toString()) ?? 0,
       requestNumber: int.tryParse(json['requestNumber'].toString()) ?? 0,
       requestUpload: int.tryParse(json['requestUpload'].toString()) ?? 0,
@@ -48,6 +48,7 @@ class ServerModel {
       responseUploadTime:
           double.tryParse(json['responseUploadTime'].toString()) ?? 0,
       unresponse: int.tryParse(json['unresponse'].toString()) ?? 0,
+      row: int.tryParse(json['row'].toString()) ?? oo,
     );
   }
 
@@ -58,7 +59,6 @@ class ServerModel {
       'description': description,
       'location': location,
       'owner': owner.toJson(),
-      'ownerId': ownerId,
       'requestDownload': requestDownload,
       'requestNumber': requestNumber,
       'requestUpload': requestUpload,
@@ -66,6 +66,7 @@ class ServerModel {
       'responseTime': responseTime,
       'responseUploadTime': responseUploadTime,
       'unresponse': unresponse,
+      'row': row,
     };
   }
 }

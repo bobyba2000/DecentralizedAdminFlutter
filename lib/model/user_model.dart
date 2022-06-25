@@ -15,7 +15,7 @@ class UserModel {
 
   factory UserModel.fromJson(dynamic json) {
     return UserModel(
-      imageUrl: json['imageUrl'],
+      imageUrl: json['imageUrl'] ?? '',
       name: json['name'],
       phoneNumber: json['phoneNumber'],
       email: json['email'],

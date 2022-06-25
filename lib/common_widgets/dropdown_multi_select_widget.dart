@@ -52,8 +52,10 @@ class _DropdownMultiSelectWidgetState extends State<DropdownMultiSelectWidget> {
       children: [
         DropDownMultiSelect(
           onChanged: (List<String> values) {
-            if (values[0].isEmpty) {
-              values.removeAt(0);
+            if (values.length > 1) {
+              if (values[0].isEmpty) {
+                values.removeAt(0);
+              }
             }
             if (values.length <= widget.maxValue) {
               setState(
